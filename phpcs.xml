@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ruleset name="HexletProjectRules">
+    <description>PHP_CodeSniffer configuration for Page Analyzer.</description>
+
+    <!-- Использовать стандарт PSR-12 -->
+    <rule ref="PSR12"/>
+
+    <!-- Какие файлы и папки проверять -->
+    <file>public/index.php</file>
+
+    <!-- Показывать прогресс проверки и цвета -->
+    <arg value="p"/>
+    <arg value="colors"/>
+
+    <!-- Игнорировать сторонние библиотеки -->
+    <exclude-pattern>vendor/*</exclude-pattern>
+</ruleset>

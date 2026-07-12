@@ -1,0 +1,21 @@
+{
+    "name": "hexlet/code",
+    "description": "Page Analyzer project for Hexlet course",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Basang Basangov",
+            "email": "basang.basangov@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^4.15",
+        "slim/psr7": "^1.8",
+        "slim/http": "^1.4",
+        "slim/php-view": "^3.4",
+        "php-di/php-di": "^7.1"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^4.0"
+    }
+}

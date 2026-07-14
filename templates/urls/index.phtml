@@ -1,0 +1,21 @@
+<h1>Urls</h1>
+
+<?php if (!empty($params['flash'])): ?>
+<p style="color: green"><?= $flash['success'][0]?></p>
+<?php endif; ?>
+<p><a href="/urls/new">Add new url</a></p>
+<hr>
+<?php if (empty($urls)): ?>
+<p>Nothing to display, sorry. :(</p>
+<?php endif; ?>
+<ul>
+  <?php foreach ($urls as $url): ?>
+    <li>
+      <a href="/urls/<?= $url->getId() ?>">
+        <?= $url->getId() ?>
+        <?= htmlspecialchars($url->getName()) ?>
+        <?= htmlspecialchars($url->getCreatedAt()) ?>
+      </a>
+    </li>
+  <?php endforeach; ?>
+</ul>

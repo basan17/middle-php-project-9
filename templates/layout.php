@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Анализатор cтраниц</title>
+  <title><?= $title ?></title>
 
   <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
@@ -18,14 +18,14 @@
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid bg-dark">
-    <a class="navbar-brand text-white" href="#">Анализатор страниц</a>
+    <a class="navbar-brand text-white" href="/">Анализатор страниц</a>
     <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Сайты</a>
+          <a class="nav-link text-white" href="/urls">Сайты</a>
         </li>
       </ul>
     </div>
@@ -33,33 +33,23 @@
 </nav>
     <main class="container">
       <!-- flash -->
-      <div class="flash">
-        <?php if (count($flash) > 0) : ?>
-          <ul>
-          <?php foreach ($flash as $messages) : ?>
-              <?php foreach ($messages as $message) : ?>
-                  <li><?= $message ?></li>
-              <?php endforeach ?>
-          <?php endforeach ?>
-          </ul>
-        <?php endif ?>
-      </div>
-      <!-- content -->
-      <div class="card" style="width: 36rem;">
-        <div class="card-body">
-          <h1 class="card-title">Анализатор страниц</h1>
-
-        <div class="mb-3">
-          <form action="/" method="post">
-            <label for="url-input" class="form-label">Бесплатно проверяйте сайты на SEO пригодность.</label>
-            <input class="form-control mb-3" id="url-input" name="url" placeholder="https://www.example.com">
-            <input class="btn btn-primary" type="submit" value="Проверить">
-          </form>
+        <div class="flash">
+            <?php if (!empty($flash)): ?>
+                <?php if (isset($flash['success'])): ?>
+                    <?php foreach ($flash['success'] as $message): ?>
+                        <p style="color: green"><?= htmlspecialchars($message) ?></p>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                
+                <?php if (isset($flash['error'])): ?>
+                    <?php foreach ($flash['error'] as $message): ?>
+                        <p style="color: red"><?= htmlspecialchars($message) ?></p>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            <?php endif; ?>
         </div>
-        </div>
-      </div>
-
-        
+        <!-- content -->
+        <?=$content?>
     </main>
 </body>
 </html>

@@ -1,3 +1,17 @@
-<div class="alert alert-info" role="alert">
-  A simple info alert—check it out!
+<div class="card" style="width: 36rem;">
+  <div class="card-body">
+    <h1 class="card-title">Анализатор страниц</h1>
+
+  <div class="mb-3">
+    <form action="/" method="post">
+      <label for="url-input" class="form-label">Бесплатно проверяйте сайты на SEO пригодность.</label>
+      <input 
+        class="form-control mb-3" 
+        id="url-input" name="url" 
+        placeholder="https://www.example.com"
+        value="<?= htmlspecialchars($old_url ?? '') ?>">
+      <input class="btn btn-primary" type="submit" value="Проверить">
+    </form>
+  </div>
+  </div>
 </div>

@@ -1,0 +1,8 @@
+<p><?= $url->getId() ?></p>
+<p><?= htmlspecialchars($url->getName()) ?></p>
+<p><?= htmlspecialchars($url->getCreatedAt()) ?></p>
+<?php if (!empty($flash)): ?>
+<p style="color: green"><?= $flash['success'][0]?></p>
+<?php endif; ?>
+<p><a href="/urls/<?= $url->getId() ?>/edit">Edit url</a></p>
+<p><a href="/urls">Back to urls list</a></p>

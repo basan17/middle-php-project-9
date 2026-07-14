@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="h-100">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +15,10 @@
         crossorigin="anonymous">
       </script>
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<body class="d-flex flex-column h-100">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary pt-0">
   <div class="container-fluid bg-dark">
-    <a class="navbar-brand text-white" href="/">Анализатор страниц</a>
+    <a class="navbar-brand text-white fw-semibold" href="/">Анализатор страниц</a>
     <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,25 +31,36 @@
     </div>
   </div>
 </nav>
-    <main class="container">
+    <main class="flex-shrink-0 container d-flex flex-column align-items-center">
       <!-- flash -->
-        <div class="flash">
+        <div class="flash w-100 text-right">
             <?php if (!empty($flash)): ?>
                 <?php if (isset($flash['success'])): ?>
                     <?php foreach ($flash['success'] as $message): ?>
-                        <p style="color: green"><?= htmlspecialchars($message) ?></p>
+                      <div class="alert alert-success pb-0" role="alert">
+                        <p><?= htmlspecialchars($message) ?></p>
+                      </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
                 
                 <?php if (isset($flash['error'])): ?>
                     <?php foreach ($flash['error'] as $message): ?>
-                        <p style="color: red"><?= htmlspecialchars($message) ?></p>
+                      <div class="alert alert-danger pb-0" role="alert">
+                        <p><?= htmlspecialchars($message) ?></p>
+                      </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
             <?php endif; ?>
         </div>
         <!-- content -->
-        <?=$content?>
+        <div class="align-self-start w-100">
+          <?=$content?>
+        </div>
     </main>
+  <footer class="footer mt-auto pt-2 bg-light border-top">
+    <p class="container text-center">
+      <a href="https://ru.hexlet.io/">Hexlet</a>
+    </p>
+  </footer>
 </body>
 </html>

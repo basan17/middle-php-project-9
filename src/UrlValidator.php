@@ -8,26 +8,12 @@ class UrlValidator
 {
     public function validate(string $url): array
     {
-        $errors = [];
         $v = new Validator(array('url' => $url));
-        $v->rules([
-            'lengthMax' => [
-                ['url', 255]
-            ],
-            'required' => [
-                ['url']
-            ],
-            'url' => [
-                ['url']
-            ]
-        ]);
-        // if (empty($url['name'])) {
-        //     $errors['name'] = "Name can not be empty";
-        // }
 
-        // if (empty($url['model'])) {
-        //     $errors['model'] = "Model can not be empty";
-        // }
+        $v->rule('required', 'url')->message('{field} не должен быть пустым')->label('URL');
+        $v->rule('lengthMax', 'url', 255)->message('{field} превышает 255 символов')->label('URL');
+        $v->rule('url', 'url')->message('Некорректный {field}')->label('URL');
+
         if ($v->validate()) {
             return [];
         } else {

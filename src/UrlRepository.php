@@ -26,6 +26,19 @@ class UrlRepository
         return $urls;
     }
 
+    public function findByName(string $urlName): ?Url {
+        $sql = "SELECT * FROM urls WHERE name = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$urlName]);
+        if ($row = $stmt->fetch())  {
+            $url = Url::fromArray([$row['name'], $row['created_at']]);
+            $url->setId($row['id']);
+            return $url;
+        }
+
+        return null;
+    }
+
     public function find(int $id): ?Url
     {
         $sql = "SELECT * FROM urls WHERE id = ?";

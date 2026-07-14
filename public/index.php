@@ -57,20 +57,33 @@ $app->post('/', function ($request, $response) use ($router) {
 
     $validator = new UrlValidator();
     $errors = $validator->validate($url);
-    
+
     if (empty($errors)) {
-        $this->get('flash')->addMessage('success', 'Url was successfully added.');
+        
+        $foundUrl = $urlRepository->findByName($url);
 
-        $url = Url::fromArray([$url, Carbon::now()]);
-        $urlRepository->save($url);
+        if (is_null($foundUrl)) {
+            $url = Url::fromArray([$url, Carbon::now()]);
+            $urlRepository->save($url);
 
-        return $response->withRedirect($router->urlFor('urls.index'));
+            $this->get('flash')->addMessage('success', 'Страница успешно добавлена');
+        } else {
+            $this->get('flash')->addMessage('error', 'Страница уже существует');
+            $this->get('flash')->addMessage('old_url', $url);
+        }
+
+        //return $response->withRedirect($router->urlFor('homepage'));
+
     } else {
-        $this->get('flash')->addMessage('error', 'There was mistake in url.');
+        foreach ($errors as $errorMessage) {
+            $this->get('flash')->addMessage('error', $errorMessage);
+        }
+        
         $this->get('flash')->addMessage('old_url', $url);
 
-        return $response->withRedirect($router->urlFor('homepage'));
+        // return $response->withRedirect($router->urlFor('homepage'));
     }
+    return $response->withRedirect($router->urlFor('homepage'));
 })->setName('urls.store');
 
 $app->get('/urls', function ($request, $response) {

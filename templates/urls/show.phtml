@@ -1,8 +1,38 @@
-<p><?= $url->getId() ?></p>
-<p><?= htmlspecialchars($url->getName()) ?></p>
-<p><?= htmlspecialchars($url->getCreatedAt()) ?></p>
-<?php if (!empty($flash)): ?>
-<p style="color: green"><?= $flash['success'][0]?></p>
-<?php endif; ?>
-<p><a href="/urls/<?= $url->getId() ?>/edit">Edit url</a></p>
-<p><a href="/urls">Back to urls list</a></p>
+<h1 class="fs-2 fw-normal mt-2">Сайт: <?= htmlspecialchars($url->getName()) ?></h1>
+<table class="table table-hover table-sm  table-bordered w-100" data-test="url">
+  <tbody>
+    <tr>
+      <td>ID</td>
+      <td><?= $url->getId() ?></td>
+    </tr>
+    <tr>
+      <td>Имя</td>
+      <td><?= htmlspecialchars($url->getName()) ?></td>
+    </tr>
+    <tr>
+      <td>Дата создания</td>
+      <td><?= htmlspecialchars($url->getCreatedAt()) ?></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="fs-4 fw-normal mt-5">Проверки</h2>
+<form action="/check" method="post">
+    <input class="btn btn-primary" type="submit" value="Запустить проверку">
+</form>
+
+<table class="table table-hover table-sm  table-bordered w-100 mt-3" data-test="checks">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Код ответа</th>
+      <th scope="col">h1</th>
+      <th scope="col">title</th>
+      <th scope="col">description</th>
+      <th scope="col">Дата создания</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>

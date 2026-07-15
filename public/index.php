@@ -67,6 +67,7 @@ $app->post('/', function ($request, $response) use ($router) {
             $urlRepository->save($url);
 
             $this->get('flash')->addMessage('success', 'Страница успешно добавлена');
+            return $response->withRedirect($router->urlFor('urls.show', ['id' => $url->getId()]));
         } else {
             $this->get('flash')->addMessage('error', 'Страница уже существует');
             $this->get('flash')->addMessage('old_url', $url);
